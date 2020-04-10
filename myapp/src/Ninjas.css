@@ -1,0 +1,12 @@
+body {
+    background-color: pink;
+}
+
+form {
+    background: #fff;
+    padding: 20px;
+}
+
+form#ninjaform div {
+    margin-bottom: 10px;
+}
