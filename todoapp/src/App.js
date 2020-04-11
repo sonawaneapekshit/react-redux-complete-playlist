@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Todos from './Todos';
+import AddTodos from './AddTodos';
+class App extends Component {
+  constructor(props) {
+    super(props);
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    this.state = {
+      todos: [
+        { id: 1, content: 'Buy milk' },
+        { id: 2, content: 'Play games' },
+      ],
+    };
+  }
+  handleDeleteTodo = (id) => {
+    let updatedTodos = this.state.todos.filter((todo) => {
+      return todo.id !== id;
+    });
+    this.setState({
+      todos: updatedTodos,
+    });
+  };
+  handleUpdateTodo = (todo) => {
+    todo.id = Math.random() * 10;
+    let newTodoList = [...this.state.todos, todo];
+    this.setState({
+      todos: newTodoList,
+    });
+  };
+  render() {
+    return (
+      <div className="todo-app container">
+        <h1 className="blue center-align">Todo list</h1>
+        <Todos
+          todos={this.state.todos}
+          handleDeleteTodo={this.handleDeleteTodo}
+        />
+        <AddTodos updateTodos={this.handleUpdateTodo} />
+      </div>
+    );
+  }
 }
 
 export default App;
