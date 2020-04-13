@@ -2,6 +2,7 @@
 
 # dependencies
 /todoapp/node_modules
+/poketimes/node_modules
 
 # testing
 /todoapp/coverage
